@@ -5,6 +5,9 @@
 #include <ESPAsyncWebServer.h>
 #include <AsyncTCP.h>
 
+#include "soc/soc.h"
+#include "soc/rtc_cntl_reg.h"
+
 #define UP 1
 #define DOWN 2
 #define LEFT 3
@@ -300,6 +303,7 @@ void onCarInputWebSocketEvent(AsyncWebSocket *server,
 
 void setup() {
   // put your setup code here, to run once:
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG,0);
   setUpPinModes();
   Serial.begin(115200);
 
